@@ -1,8 +1,6 @@
 # Kyber
  Kyber
 
-
-
 <div align="center">
   <p>
     <a href="
@@ -10,7 +8,7 @@
   </p>
 </div>  
 
-# Discord Bot Kuber
+# Discord Bot Kyber
 ***  
 /*
 __The commands available are: (default names)__  
@@ -32,11 +30,13 @@ __Pre-installation:__
 1. `npm i discord.js`
 2. `ffmpeg installed` __correctly__
 3. `npm i fs`
-3. `npm i path`
-3. `npm i process`
-3. `npm i colors`
-3. `npm i moment`
-3. `npm i console-stamp`
+4. `npm i path`
+5. `npm i process`
+6. `npm i colors`
+7. `npm i moment`
+8. `npm i console-stamp`
+9.  or `npm i discord.js fs path process colors moment console-stamp`
+
 
 ## Basic Options kyber.
 | Option | Type | Description | Default |  
