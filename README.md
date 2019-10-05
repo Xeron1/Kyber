@@ -1,7 +1,7 @@
 # Kyber
  Kyber
 
-npm i  fs path process colors moment console-stamp
+
 
 <div align="center">
   <p>
@@ -10,10 +10,11 @@ npm i  fs path process colors moment console-stamp
   </p>
 </div>  
 
-# Discord MusicBot Addon
+# Discord Bot Kuber
 ***  
 This module is a simple Node.js based music extension/bot for Discord.js projects using YouTube. This was originally an update of an older addon for newer versions of Discord.js but not serves as it's own module.   
-
+```js
+/*
 __The commands available are: (default names)__  
 * `play <url>|<search string>`: Play audio from YouTube.
 * `search <search string>`: Search's for up to 10 videos from YT.
@@ -26,25 +27,27 @@ __The commands available are: (default names)__
 * `leave`: Clears the song queue and leaves the channel.
 * `clearqueue`: Clears the song queue.
 * `np`: Show the current playing song.  
-
-__Permissions:__  
-* If `anyoneCanSkip` is true, anyone can skip songs in the queue.
-* If `anyoneCanAdjust` is true, anyone can adjust the volume.
-* If `ownerOverMember` is true, the set ID of the user (`ownerID`) will over-ride permissions from the bot.
-
+```
 ***
 # Installation
 ***  
+    
 __Pre-installation:__  
-1. `npm install discord.js`
+1. `npm i discord.js`
 2. `ffmpeg installed` __correctly__
-3. `npm install opusscript`
+3. `npm i fs`
+3. `npm i path`
+3. `npm i process`
+3. `npm i colors`
+3. `npm i moment`
+3. `npm i console-stamp`
 
 __Installation:__  
 * `npm install discord.js-musicbot-addon`  
 If you have troubles installing, see [this link](https://github.com/DarkoPendragon/discord.js-musicbot-addon/wiki/Installation-&-Troubleshooting) or [join the discord server](https://discordapp.com/invite/JHMtwhG).
 Note that the NPM version will be *slightly behind* the GitHub version.
-
+```js
+/*
 ## Basic Options.
 | Option | Type | Description | Default |  
 | --- | --- | --- | --- |
@@ -71,6 +74,8 @@ Note that the NPM version will be *slightly behind* the GitHub version.
 | channelBlacklist | Object/Array | Sets a list of ID's ignore when running messages. | [ ] |
 | bitRate | String | Sets the preferred bitRate for the Discord.js stream to use. | "120000" |
 | nextPresence | [PresenceData](https://discord.js.org/#/docs/main/stable/typedef/PresenceData) | PresenceData to set after instead of clearing it (clearPresence). | null |
+*/
+```
 
 
 See [examples](https://github.com/DarkoPendragon/discord.js-musicbot-addon/blob/master/examples/examples.md) for more info.
