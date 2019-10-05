@@ -1,9 +1,8 @@
 # Kyber
- Kyber
+ Описание
 
 # Discord Bot Kyber
 ***  
-/*
 __The commands available are: (default names)__  
 * `play <url>|<search string>`: Play audio from YouTube.
 * `search <search string>`: Search's for up to 10 videos from YT.
