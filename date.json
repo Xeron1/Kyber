@@ -1,0 +1,29 @@
+{
+    "PREFIX": ">>",
+    "REQINDEX": "app.js",
+
+
+    "STAMP_ON": 1,
+    "datePrefix": "[",
+    "dateSuffix": "]",
+    "labelPrefix": "[",
+    "labelSuffix": "]",
+    "STAMP": "green",
+    "COLORS_SILLY_STAMP": "blue",
+    "COLORS_INPUT_STAMP": "grey",
+    "COLORS_VERBOSE_STAMP": "green",
+    "COLORS_PROMPT_STAMP": "red",
+    "COLORS_DATE_STAMP": "yellow",
+    "COLORS_HELP_STAMP": "green",
+    "COLORS_TABLE_STAMP": "green",
+    "COLORS_LOG_STAMP": "cyan",
+    "COLORS_WARN_STAMP": "yellow",
+    "COLORS_DEBUG_STAMP": "cyan",
+    "COLORS_INFO_STAMP": "yellow",
+    "COLORS_ERROR_STAMP": "red",
+
+
+    "LOG_INVITE": "id",
+    "LOG_MOD": "id",
+    "EMBED_MSG": "DARK_RED"
+}
