@@ -26,9 +26,8 @@ __The commands available are: (default names)__
 * `clearqueue`: Clears the song queue.
 * `np`: Show the current playing song.
 ***
-# Installation
+# Installation module
 ***  
-    
 __Pre-installation:__  
 1. `npm i discord.js`
 2. `ffmpeg installed` __correctly__
@@ -39,13 +38,7 @@ __Pre-installation:__
 3. `npm i moment`
 3. `npm i console-stamp`
 
-__Installation:__  
-* `npm install discord.js-musicbot-addon`  
-If you have troubles installing, see [this link](https://github.com/DarkoPendragon/discord.js-musicbot-addon/wiki/Installation-&-Troubleshooting) or [join the discord server](https://discordapp.com/invite/JHMtwhG).
-Note that the NPM version will be *slightly behind* the GitHub version.
-
-
-## Basic Options.
+## Basic Options kyber.
 | Option | Type | Description | Default |  
 | --- | --- | --- | --- |
 | youtubeKey | String | A YouTube Data API3 key. Required to run. | NaN |
