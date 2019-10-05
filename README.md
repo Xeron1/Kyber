@@ -1,2 +1,2 @@
 # Kyber
- discord bot
+ discord BOT
