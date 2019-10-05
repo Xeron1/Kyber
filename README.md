@@ -1,13 +1,6 @@
 # Kyber
  Kyber
 
-<div align="center">
-  <p>
-    <a href="
-/"><img src="" alt="NPM info" /></a>
-  </p>
-</div>  
-
 # Discord Bot Kyber
 ***  
 /*
