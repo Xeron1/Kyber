@@ -12,8 +12,6 @@
 
 # Discord Bot Kuber
 ***  
-This module is a simple Node.js based music extension/bot for Discord.js projects using YouTube. This was originally an update of an older addon for newer versions of Discord.js but not serves as it's own module.   
-```js
 /*
 __The commands available are: (default names)__  
 * `play <url>|<search string>`: Play audio from YouTube.
@@ -26,8 +24,7 @@ __The commands available are: (default names)__
 * `volume`: Adjust the playback volume between 1 and 200.
 * `leave`: Clears the song queue and leaves the channel.
 * `clearqueue`: Clears the song queue.
-* `np`: Show the current playing song.  
-```
+* `np`: Show the current playing song.
 ***
 # Installation
 ***  
@@ -46,8 +43,8 @@ __Installation:__
 * `npm install discord.js-musicbot-addon`  
 If you have troubles installing, see [this link](https://github.com/DarkoPendragon/discord.js-musicbot-addon/wiki/Installation-&-Troubleshooting) or [join the discord server](https://discordapp.com/invite/JHMtwhG).
 Note that the NPM version will be *slightly behind* the GitHub version.
-```js
-/*
+
+
 ## Basic Options.
 | Option | Type | Description | Default |  
 | --- | --- | --- | --- |
@@ -74,18 +71,3 @@ Note that the NPM version will be *slightly behind* the GitHub version.
 | channelBlacklist | Object/Array | Sets a list of ID's ignore when running messages. | [ ] |
 | bitRate | String | Sets the preferred bitRate for the Discord.js stream to use. | "120000" |
 | nextPresence | [PresenceData](https://discord.js.org/#/docs/main/stable/typedef/PresenceData) | PresenceData to set after instead of clearing it (clearPresence). | null |
-*/
-```
-
-
-See [examples](https://github.com/DarkoPendragon/discord.js-musicbot-addon/blob/master/examples/examples.md) for more info.
-## Cooldown
-| Option | Type | Description | Default |  
-| --- | --- | --- | --- |
-| cooldown | Object | The main cooldown object | |
-| cooldown.enabled | Boolean | Whether or not cooldowns are enabled. | true |
-| cooldown.timer | Number | Time in MS that cooldowns last. | 10000 |
-| cooldown.exclude | Object/Array | Array of command names to exclude. Uses default names, not set names | ["volume","queue","pause","resume","np"] |  
-
-## Command Options.  
-Commands pass a bit different. Each command follows the same format as below. Valid commands are `play`, `remove`, `help`, `np`, `queue`, `volume`, `pause`, `resume`, `skip`, `clearqueue`, `loop`, `leave`.
