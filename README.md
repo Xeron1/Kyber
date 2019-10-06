@@ -4,7 +4,7 @@
 # Discord Bot Kyber
 ***  
 __The commands available are: (default names)__  
-* `play <url>|<search string>`: Play audio.
+* `not found command`: not found command.
 ***
 # Installation module
 ***  
