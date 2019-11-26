@@ -1,82 +1,94 @@
-const colors = require('colors');
-const CFG = require("./date.json");
-require(`./${CFG.REQINDEX}`);
-require("moment");
-const fs = require('fs');
-const errorOutput = fs.createWriteStream('./log/errorlog.log');
-const loger = new console.Console(errorOutput)
-
-if (CFG.STAMP_ON == 1) {
-    require('console-stamp')(console, {
-        pattern: 'dd/mm/yyyy HH:MM:ss',
-        stderr: errorOutput,
-        metadata: function () {
-            return ('[' + process.memoryUsage().rss + ']');
+const chalk = require('chalk'),
+    fs = require('fs'),
+    DATE = {
+        FORMAT_DATE: "dd/mm/yyyy HH:MM:ss",
+        datePrefix: "[",
+        dateSuffix: "]",
+        labelPrefix: "[",
+        labelSuffix: "]"
+    };
+require(__dirname + '/index.js');
+var util = require('util'),
+    os = require('os'),
+    dateFormat = require('dateformat'),
+    now = new Date(),
+    log_file_stdout = fs.createWriteStream(__dirname + '/log/stdout.log', { flags: 'w' }),
+    log_file_stderr = fs.createWriteStream(__dirname + '/log/stderr.log', { flags: 'w' }),
+    log_stdout = process.stdout,
+    mem = Math.round(process.memoryUsage().rss / 1024 / 1024),
+    cpu = os.loadavg(),
+    log = {
+        silly: function (silly) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}SILLY${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(silly + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}SILLY${DATE.labelSuffix} `
+                + util.format(silly + `\n`));
         },
-        colors: {
-            stamp: CFG.STAMP,
-            label: CFG.STAMP,
-            metadata: CFG.STAMP
+        input: function (input) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}INPUT${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(input + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}INPUT${DATE.labelSuffix} `
+                + util.format(input + `\n`));
         },
-        datePrefix: CFG.datePrefix,
-        dateSuffix: CFG.dateSuffix,
-        labelPrefix: CFG.labelPrefix,
-        labelSuffix: CFG.labelSuffix
-    });
-}
-colors.setTheme({
-    silly: [CFG.COLORS_SILLY_STAMP, CFG.COLORS_SILLY_STAMP],
-    input: [CFG.COLORS_INPUT_STAMP, CFG.COLORS_INPUT_STAMP],
-    verbose: [CFG.COLORS_VERBOSE_STAMP, CFG.COLORS_VERBOSE_STAMP],
-    prompt: [CFG.COLORS_PROMPT_STAMP, CFG.COLORS_PROMPT_STAMP],
-    data: [CFG.COLORS_DATE_STAMP, CFG.COLORS_DATE_STAMP],
-    help: [CFG.COLORS_HELP_STAMP, CFG.COLORS_HELP_STAMP],
-    info: [CFG.COLORS_INFO_STAMP, CFG.COLORS_INFO_STAMP],
-    table: [CFG.COLORS_TABLE_STAMP, CFG.COLORS_TABLE_STAMP],
-    warn: [CFG.COLORS_WARN_STAMP, CFG.COLORS_WARN_STAMP],
-    debug: [CFG.COLORS_DEBUG_STAMP, CFG.COLORS_DEBUG_STAMP],
-    log: [CFG.COLORS_LOG_STAMP, CFG.COLORS_LOG_STAMP],
-    error: [CFG.COLORS_ERROR_STAMP, CFG.COLORS_ERROR_STAMP]
-});
-
-var log = {
-    silly: function (silly) {
-        console.log(colors.silly(silly));
-    },
-    input: function (input) {
-        console.log(colors.input(input));
-    },
-    verbose: function (verbose) {
-        console.log(colors.verbose(verbose));
-    },
-    prompt: function (prompt) {
-        console.log(colors.prompt(prompt));
-    },
-    data: function (data) {
-        console.log(colors.data(data));
-    },
-    help: function (help) {
-        console.log(colors.help(help));
-    },
-    info: function (info) {
-        console.log(colors.help(info));
-    },
-    table: function (table) {
-        console.log(colors.table(table));
-    },
-    warn: function (warn) {
-        console.log(colors.warn(warn));
-    },
-    debug: function (debug) {
-        console.log(colors.debug(debug));
-    },
-    log: function (log) {
-        console.log(colors.log(log));
-    },
-    error: function (error) {
-        loger.error(colors.error(error));
-        console.error(colors.error(error));
-    }
-};
-
+        verbose: function (verbose) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}VERBOSE${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(verbose + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}VERBOSES${DATE.labelSuffix} `
+                + util.format(verbose + `\n`));
+        },
+        data: function (data) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}DATE${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(data + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}DATE${DATE.labelSuffix} `
+                + util.format(data + `\n`));
+        },
+        help: function (help) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}HELP${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(help + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}HELP${DATE.labelSuffix} `
+                + util.format(help + `\n`));
+        },
+        info: function (info) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}INFO${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(info + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}INFO${DATE.labelSuffix} `
+                + util.format(info + `\n`));
+        },
+        debug: function (debug) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}DEBUG${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(debug + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}DEBUG${DATE.labelSuffix} `
+                + util.format(debug + `\n`));
+        },
+        prompt: function (prompt) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}PROMPT${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(prompt + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}PROMPT${DATE.labelSuffix} 
+            ` + util.format(prompt + `\n`));
+        },
+        table: function (table) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}TABLE${DATE.labelSuffix}`) + ` ` + util.format(chalk.green(table + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}TABLE${DATE.labelSuffix} `
+                + util.format(table + `\n`));
+        },
+        warn: function (warn) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}WARN${DATE.labelSuffix}`) + ` ` + util.format(chalk.bgYellow(warn + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}WARN${DATE.labelSuffix} `
+                + util.format(warn + `\n`));
+        },
+        log: function (log) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}LOG${DATE.labelSuffix}`) + ` ` + util.format(chalk.cyan(log + `\n`)));
+            log_file_stdout.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}LOG${DATE.labelSuffix} `
+                + util.format(log + `\n`));
+        },
+        error: function (error) {
+            log_stdout.write(chalk.cyan(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE)
+                + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}ERROR${DATE.labelSuffix}`) + ` ` + util.format(chalk.red(error + `\n`)));
+            log_file_stderr.write(dateFormat(now, `${DATE.datePrefix}` + DATE.FORMAT_DATE) + `${DATE.dateSuffix} ${DATE.labelPrefix} CPU: ${Math.ceil(cpu[1] * 100) / 10 + " %"} Mem: ${mem} MB ${DATE.labelPrefix}ERROR${DATE.labelSuffix} `
+                + util.format(error + `\n`));
+        }
+    };
 module.exports = log;
